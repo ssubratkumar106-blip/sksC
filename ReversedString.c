@@ -1,21 +1,34 @@
-class Student {   
-    int id;   
-    String name;   
-    //constructor to initialize integer and string   
-    Student (int i,String n){   
-    id = i; 
-    name = n;  
-     }   
-    //constructor to initialize another object   
-    Student (Student s){   
-    id = s.id;   
-    name =s.name;   
-    }   
-    void display (){System.out.println(id+" "+name);}   
-    public static void main (String args[ ]){   
-    Student s1 = new Student (111,"ABC");   
-    Student s2 = new Student (s1);   
-    s1.display();   
-    s2.display();   
-   }   
-}  
+#include <stdio.h>
+
+char text[40];
+int top = -1;
+
+void push(char c) {
+    if (top < 39 && c != '*') {
+        top++;
+        text[top] = c;
+    }
+}
+
+char pop() {
+    if (top >= 0) {
+        return text[top--];
+    }
+    return '\0';
+}
+
+int main() {
+    char ch;
+    printf("Enter a string (* to end): ");
+
+    while ((ch = getchar()) != '*' && top < 39) {
+        push(ch);
+    }
+ 
+    printf("\nReverse String is: ");
+    while (top >= 0) {
+        putchar(pop());
+    }
+
+    return 0;
+}
